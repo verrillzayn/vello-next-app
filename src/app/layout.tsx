@@ -3,6 +3,8 @@ import { Inter as FontSans } from "next/font/google";
 import "@/styles/globals.css";
 
 import { cn } from "@/lib/utils";
+import { ThemeProvider } from "@/components/providers/theme-provider";
+import ThemeToogle from "@/components/theme-toggle";
 
 export const fontSans = FontSans({
   subsets: ["latin"],
@@ -27,9 +29,12 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
-        <main className="relative flex min-h-screen flex-col">
-          <div className="flex-1 flex-grow">{children}</div>
-        </main>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <main className="relative flex min-h-screen flex-col">
+            <ThemeToogle className="fixed right-10 top-0" />
+            <div className="flex-1 flex-grow">{children}</div>
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   );

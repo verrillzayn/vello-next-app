@@ -4,25 +4,58 @@
 
 @layer base {
   :root {
+    /* white */
     --background: 0 0% 100%;
+
+    /* black */
     --foreground: 240 10% 3.9%;
+
+    /* white */
     --card: 0 0% 100%;
+
+    /* black */
     --card-foreground: 240 10% 3.9%;
+
+    /* white */
     --popover: 0 0% 100%;
+
+    /* black */
     --popover-foreground: 240 10% 3.9%;
+
+    /* rose */
     --primary: 346.8 77.2% 49.8%;
+
+    /* rose */
     --primary-foreground: 355.7 100% 97.3%;
+
+    /* gray light */
     --secondary: 240 4.8% 95.9%;
+
+    /* gray black */
     --secondary-foreground: 240 5.9% 10%;
+
+    /* gray light */
     --muted: 240 4.8% 95.9%;
+
+    /* gray base */
     --muted-foreground: 240 3.8% 46.1%;
+
+    /* gray light */
     --accent: 240 4.8% 95.9%;
+
+    /* gray black */
     --accent-foreground: 240 5.9% 10%;
+
     --destructive: 0 84.2% 60.2%;
+
     --destructive-foreground: 0 0% 98%;
+
     --border: 240 5.9% 90%;
+
     --input: 240 5.9% 90%;
+
     --ring: 346.8 77.2% 49.8%;
+
     --radius: 0.5rem;
   }
 
@@ -56,4 +89,82 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* mode toggle */
+
+/* The switch - the box around the slider */
+#theme-toggle-button {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  cursor: pointer;
+}
+
+/* Hide default HTML checkbox */
+#toggle {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+#theme-toggle-button svg {
+  display: inline;
+}
+
+#container,
+#patches,
+#stars,
+#button,
+#sun,
+#moon,
+#cloud {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.25s;
+}
+
+/* night sky background */
+#toggle:checked + svg #container {
+  fill: #2b4360;
+}
+
+/* move button to right when checked */
+#toggle:checked + svg #button {
+  transform: translate(28px, 2.333px);
+}
+
+/* show/hide sun and moon based on checkbox state */
+#sun {
+  opacity: 1;
+}
+
+#toggle:checked + svg #sun {
+  opacity: 0;
+}
+
+#moon {
+  opacity: 0;
+}
+
+#toggle:checked + svg #moon {
+  opacity: 1;
+}
+
+/* show or hide background items on checkbox state */
+#cloud {
+  opacity: 1;
+}
+
+#toggle:checked + svg #cloud {
+  opacity: 0;
+}
+
+#stars {
+  opacity: 0;
+}
+
+#toggle:checked + svg #stars {
+  opacity: 1;
 }
