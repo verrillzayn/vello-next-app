@@ -28,13 +28,13 @@ export default function Home() {
   return (
     <>
       <MaxWidthWrapper>
-        <div className="mx-auto flex max-w-3xl flex-col items-center py-20 text-center">
+        <div className="mx-auto flex min-h-[80vh] max-w-3xl flex-col items-center justify-center py-20 text-center">
           {/* TODO: ganti headlinenya dan Font */}
-          <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
+          <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
             Your Marketplace for high-quality {""}
             <span className="text-rose-600">digital assets</span>.
           </h1>
-          <p className="mt-6 max-w-prose text-lg text-muted-foreground">
+          <p className="mt-4 max-w-[40ch] text-base text-muted-foreground sm:mt-6 sm:max-w-prose">
             Welcome to Vello. Lorem ipsum dolor sit amet consectetur adipisicing
             elit. Aspernatur magni, sit eaque nihil eveniet libero.
           </p>
