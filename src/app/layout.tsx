@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import ThemeToogle from "@/components/theme-toggle";
 import Navbar from "@/components/marketing-page/navbar";
+import TrpcProviders from "@/components/providers/trpc-providers";
 
 export const fontSans = FontSans({
   subsets: ["latin"],
@@ -32,9 +33,11 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <main className="relative flex min-h-screen flex-col">
-            <Navbar />
-            <ThemeToogle className="fixed bottom-10 right-10" />
-            <div className="flex-1 flex-grow">{children}</div>
+            <TrpcProviders>
+              <Navbar />
+              <ThemeToogle className="fixed bottom-10 right-10" />
+              <div className="flex-1 flex-grow">{children}</div>
+            </TrpcProviders>
           </main>
         </ThemeProvider>
       </body>
