@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "@/styles/globals.css";
-
+import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import ThemeToogle from "@/components/theme-toggle";
@@ -39,6 +39,7 @@ export default function RootLayout({
               <div className="flex-1 flex-grow">{children}</div>
             </TrpcProviders>
           </main>
+          <Toaster richColors />
         </ThemeProvider>
       </body>
     </html>
