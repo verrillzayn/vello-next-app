@@ -11,11 +11,16 @@ import {
 } from "@/lib/validators/account-credential-validator";
 import { trpc } from "@/trpc/client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { MoveRight } from "lucide-react";
+import { Loader2, MoveRight } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { ZodError } from "zod";
 
 const Page = () => {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -24,7 +29,25 @@ const Page = () => {
     resolver: zodResolver(AuthCredentialsValidator),
   });
 
-  const { mutate, isLoading } = trpc.auth.createPayloadUser.useMutation({});
+  const { mutate, isLoading } = trpc.auth.createPayloadUser.useMutation({
+    onError: (err) => {
+      if (err.data?.code === "CONFLICT") {
+        toast.error("This email is already in use. Sign in instead?");
+        return;
+      }
+
+      if (err instanceof ZodError) {
+        toast.error(err.issues[0].message);
+        return;
+      }
+
+      toast.error("Something went wrong");
+    },
+    onSuccess: ({ sentToEmail }) => {
+      toast.success(`Verifiication email sent to ${sentToEmail}.`);
+      router.push(`/verify-email?to=${sentToEmail}`);
+    },
+  });
 
   const onSubmit = ({ email, password }: TAuthCredentialsValidator) => {
     // send data to the server
@@ -72,7 +95,14 @@ const Page = () => {
                   />
                 </div>
 
-                <Button>Sign up</Button>
+                <Button>
+                  {" "}
+                  {isLoading ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    "Sign up"
+                  )}{" "}
+                </Button>
               </div>
             </form>
           </div>
