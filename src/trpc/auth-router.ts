@@ -4,6 +4,7 @@ import { getPayloadClient } from "../get-payload";
 import { TRPCError } from "@trpc/server";
 
 export const authRouter = router({
+  // 1
   createPayloadUser: publicProcedure
     .input(AuthCredentialsValidator)
     .mutation(async ({ input }) => {
@@ -13,7 +14,7 @@ export const authRouter = router({
 
       //chek if user already exist
       const { docs: users } = await payload.find({
-        collection: "user",
+        collection: "users",
         where: {
           email: {
             equals: email,
@@ -26,8 +27,14 @@ export const authRouter = router({
       }
 
       await payload.create({
-        collection: "user",
-        data: {},
+        collection: "users",
+        data: {
+          email,
+          password,
+          role: "user",
+        },
       });
+
+      return { succes: true, sentToEmail: email };
     }),
 });
