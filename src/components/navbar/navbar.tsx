@@ -45,7 +45,7 @@ const Navbar = async () => {
                   )}
 
                   {user ? (
-                    <UserAccountNav />
+                    <UserAccountNav user={user} />
                   ) : (
                     <Button asChild variant="ghost">
                       <Link href="/sign-up">Create account</Link>
