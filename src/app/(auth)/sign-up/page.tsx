@@ -56,7 +56,7 @@ const Page = () => {
 
   return (
     <>
-      <div className="container relative flex flex-col items-center justify-center pt-20 lg:px-0">
+      <div className="container relative flex flex-col items-center justify-center pt-10 lg:px-0">
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div className="flex flex-col items-center space-x-2 text-center">
             <Icon.logo className="h-20 w-20" />
@@ -69,7 +69,7 @@ const Page = () => {
             </Button>
           </div>
 
-          <div className="grid gap-6">
+          <div className="grid gap-3 px-3 md:px-0">
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="grid gap-2">
                 <div className="grid  gap-1 py-2">
@@ -82,6 +82,11 @@ const Page = () => {
                     })}
                     placeholder="you@example.com"
                   />
+                  {errors?.email && (
+                    <p className="text-sm text-destructive">
+                      {errors.email.message}
+                    </p>
+                  )}
                 </div>
                 <div className="grid  gap-1 py-2">
                   <Label htmlFor="password">Password</Label>
@@ -93,6 +98,11 @@ const Page = () => {
                     })}
                     placeholder="Password"
                   />
+                  {errors?.password && (
+                    <p className="text-sm text-destructive">
+                      {errors.password.message}
+                    </p>
+                  )}
                 </div>
 
                 <Button>
