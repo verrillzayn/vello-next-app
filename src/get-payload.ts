@@ -15,7 +15,7 @@ const transporter = nodemailer.createTransport({
   secure: true,
   port: 465,
   auth: {
-    user: "resend", // ganti ini nanti
+    user: "resend",
     pass: process.env.RESEND_API_KEY,
   },
 });
@@ -46,7 +46,7 @@ export const getPayloadClient = async ({
     cached.promise = payload.init({
       email: {
         transport: transporter,
-        fromAddress: "onboarding@resend.dev", // ganti ini nanti
+        fromAddress: "vello@inquive-demo.salembur.com",
         fromName: "Vello",
       },
       secret: process.env.PAYLOAD_SECRET!,
