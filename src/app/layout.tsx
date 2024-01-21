@@ -5,7 +5,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import ThemeToogle from "@/components/theme-toggle";
-import Navbar from "@/components/marketing-page/navbar";
+import Navbar from "@/components/navbar/navbar";
 import TrpcProviders from "@/components/providers/trpc-providers";
 
 export const fontSans = FontSans({

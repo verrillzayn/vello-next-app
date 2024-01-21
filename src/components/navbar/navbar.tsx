@@ -1,12 +1,16 @@
 import { Icon } from "@/components/Icons";
-import Cart from "@/components/marketing-page/cart";
-import NavItems from "@/components/marketing-page/nav-items";
+import Cart from "@/components/navbar/cart";
+import NavItems from "@/components/navbar/nav-items";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import { Button } from "@/components/ui/button";
+import { getServerSideUser } from "@/lib/paylaod-utils";
+import { cookies } from "next/headers";
 import Link from "next/link";
+import UserAccountNav from "@/components/navbar/user-acc-nav";
 
-const Navbar = () => {
-  const user = null;
+const Navbar = async () => {
+  const nextCookies = cookies();
+  const { user } = await getServerSideUser(nextCookies);
 
   return (
     <div className="sticky inset-x-0 top-0 z-50 h-16 bg-background">
@@ -41,7 +45,7 @@ const Navbar = () => {
                   )}
 
                   {user ? (
-                    <p></p>
+                    <UserAccountNav />
                   ) : (
                     <Button asChild variant="ghost">
                       <Link href="/sign-up">Create account</Link>
