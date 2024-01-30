@@ -12,6 +12,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { FEE } from "@/config";
 import { useCart } from "@/lib/hooks/useCart";
 import { formatPrice } from "@/lib/utils";
 import { ShoppingCart } from "lucide-react";
@@ -26,8 +27,6 @@ const Cart = () => {
     (total, { product }) => total + product.price,
     0,
   );
-
-  const fee = 10000;
 
   return (
     <Sheet>
@@ -61,12 +60,12 @@ const Cart = () => {
                 </div>
                 <div className="flex">
                   <span className="flex-1">Transaction Fee</span>
-                  <span>{formatPrice(fee)}</span>
+                  <span>{formatPrice(FEE)}</span>
                 </div>
                 <div className="flex">
                   <span className="flex-1">Total </span>
                   {/* client */}
-                  <span>{formatPrice(cartTotal + fee)}</span>
+                  <span>{formatPrice(cartTotal + FEE)}</span>
                 </div>
               </div>
 
