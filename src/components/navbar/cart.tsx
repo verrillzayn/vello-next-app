@@ -1,4 +1,8 @@
+"use client";
+
+import CartItem from "@/components/navbar/cart-item";
 import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import {
   Sheet,
@@ -8,33 +12,45 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { useCart } from "@/lib/hooks/useCart";
 import { formatPrice } from "@/lib/utils";
 import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 const Cart = () => {
-  const itemCount = 0;
-  const fee = 20000;
+  const { items } = useCart();
+  const itemCount = items.length;
+
+  const cartTotal = items.reduce(
+    (total, { product }) => total + product.price,
+    0,
+  );
+
+  const fee = 10000;
 
   return (
     <Sheet>
       <SheetTrigger className="group -m-2 flex items-center p-2">
         <ShoppingCart className="h-6 w-6 flex-shrink-0 text-muted-foreground/80   group-hover:text-muted-foreground" />
         <span className="ml-2 text-sm font-medium text-foreground/50 group-hover:text-foreground/80">
-          0
+          {itemCount}
         </span>
       </SheetTrigger>
 
       <SheetContent className="flex w-full flex-col pr-0 sm:max-w-md">
         <SheetHeader className="space-y-2.5 pr-6">
-          <SheetTitle>Cart (0)</SheetTitle>
+          <SheetTitle>Cart ({itemCount})</SheetTitle>
         </SheetHeader>
         {itemCount > 0 ? (
           <>
             <div className="flex w-full flex-col pr-6">
-              {/* TODO: cart logic */}
-              cart items
+              <ScrollArea>
+                {items.map(({ product }) => (
+                  <CartItem product={product} key={product.id} />
+                ))}
+                cart items
+              </ScrollArea>
             </div>
             <div className="space-y-4 pr-6">
               <Separator />
@@ -49,7 +65,8 @@ const Cart = () => {
                 </div>
                 <div className="flex">
                   <span className="flex-1">Total </span>
-                  <span>{formatPrice(fee)}</span>
+                  {/* client */}
+                  <span>{formatPrice(cartTotal + fee)}</span>
                 </div>
               </div>
 
