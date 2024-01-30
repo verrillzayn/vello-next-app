@@ -5,6 +5,10 @@ import { slateEditor } from "@payloadcms/richtext-slate";
 import { webpackBundler } from "@payloadcms/bundler-webpack";
 import path from "path";
 import { Users } from "./collections/user";
+import { Products } from "./collections/products/products";
+import { Media } from "./collections/products/media";
+import { ProductFiles } from "./collections/product-files";
+import { Orders } from "./collections/orders";
 
 dotenv.config({
   path: path.resolve(__dirname, "../.env"),
@@ -12,7 +16,7 @@ dotenv.config({
 
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL || "",
-  collections: [Users],
+  collections: [Users, Products, Media, ProductFiles, Orders],
   routes: {
     admin: "/sell",
   },
