@@ -30,9 +30,9 @@ export const Products: CollectionConfig = {
     },
     {
       name: "price",
-      label: "price in USD",
+      label: "price in Rp",
       min: 0,
-      max: 1000,
+      max: 99999999,
       type: "number",
       required: true,
     },
