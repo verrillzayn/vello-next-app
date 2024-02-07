@@ -27,7 +27,7 @@ const CartList = () => {
             aria-hidden
           >
             <Image
-              src="/hippo-empty-cart.png"
+              src="/vello-cart.png"
               fill
               loading="eager"
               alt="empty shopping cart vello"
