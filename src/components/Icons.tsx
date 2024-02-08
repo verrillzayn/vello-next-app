@@ -16,7 +16,7 @@ export const Icon = {
       xmlSpace="preserve"
     >
       <path
-        fill="#FEFEFE"
+        fill="#00000000"
         opacity="1.000000"
         stroke="none"
         d="
