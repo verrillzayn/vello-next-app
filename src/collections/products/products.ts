@@ -1,11 +1,29 @@
+import { User } from "../../payload-types";
 import { PRODUCT_CATEGORIES } from "../../config";
-import { CollectionConfig } from "payload/types";
+import { Access, CollectionConfig } from "payload/types";
+
+const isAdminOrHasAccess =
+  (): Access =>
+  ({ req: { user: _user } }) => {
+    const user = _user as User | undefined;
+
+    if (!user) return false;
+    // if(user.role === 'admin') return true
+
+    // this is where the is the product is owned by user logic...
+    return true;
+  };
+
 export const Products: CollectionConfig = {
   slug: "products",
   admin: {
     useAsTitle: "name",
   },
-  access: {},
+  access: {
+    read: isAdminOrHasAccess(),
+    update: isAdminOrHasAccess(),
+    delete: isAdminOrHasAccess(),
+  },
   fields: [
     {
       name: "user",
