@@ -13,7 +13,7 @@ export default function ThemeToogle({ className }: { className?: string }) {
     }
   };
   return (
-    <div className={cn("w-12 pt-0.5", className)}>
+    <div className={cn("z-[100] w-12 pt-0.5", className)}>
       <label className="my-auto" htmlFor="toggle" id="theme-toggle-button">
         <input
           type="checkbox"
