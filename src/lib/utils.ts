@@ -31,7 +31,7 @@ export function constructMetadata({
   title = "Vello - the marketplace for digital assets",
   description = "Vello is an open-source marketplace for high-quality digital goods.",
   image = "/thumbnail.png",
-  icons = "/favicon.ico",
+  icons = "https://vello-production.up.railway.app//favicon.ico",
   noIndex = false,
 }: {
   title?: string;
