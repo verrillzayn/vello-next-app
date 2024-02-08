@@ -3,10 +3,11 @@ import Cart from "@/components/navbar/cart";
 import NavItems from "@/components/navbar/nav-items";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import { Button } from "@/components/ui/button";
-import { getServerSideUser } from "@/lib/paylaod-utils";
+import { getServerSideUser } from "@/lib/payload-utils";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import UserAccountNav from "@/components/navbar/user-acc-nav";
+import MobileNav from "@/components/navbar/mobile-nav";
 
 const Navbar = async () => {
   const nextCookies = cookies();
@@ -18,7 +19,7 @@ const Navbar = async () => {
         <MaxWidthWrapper>
           <div className="border-b border-muted-foreground/20">
             <div className="flex h-16 items-center">
-              {/* TODO: Mobile Nav */}
+              <MobileNav />
 
               <div className="ml-4 flex lg:ml-0">
                 <Link href="/">
